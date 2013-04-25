@@ -1,0 +1,34 @@
+
+########## bundler
+.bundle
+
+########## jeweler
+pkg
+
+########## rails
+spec/dummy/db/*.sqlite3
+spec/dummy/log/*.log
+spec/dummy/tmp/
+spec/dummy/.sass-cache
+
+########## rcov
+coverage
+coverage.data
+
+########## rdoc
+rdoc
+
+########## rvm
+.rvmrc
+
+########## spec
+.rspec
+
+########## yard
+doc
+.yardoc
+
+########## misc
+temp/
+tmp/
+
