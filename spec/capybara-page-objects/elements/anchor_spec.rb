@@ -1,13 +1,13 @@
 # -*- encoding : utf-8 -*-
 require 'spec_helper'
-require 'capybara-page-objects/shared_examples_for_node'
+require 'capybara-page-objects/shared_examples_for_component'
 
-describe CapybaraPageObjects::Elements::Anchor, :focused => true do
+describe CapybaraPageObjects::Elements::Anchor do
 
   # ------------------------------------------------------------------------------------------------ Node examples -----
 
-  it_behaves_like 'a CapybaraPageObjects::Node' do
-    let(:node_class) { CapybaraPageObjects::Elements::Anchor }
+  it_behaves_like 'a CapybaraPageObjects::Component' do
+    let(:component_class) { CapybaraPageObjects::Elements::Anchor }
   end
 
 
