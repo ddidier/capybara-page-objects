@@ -94,23 +94,9 @@ Spork.prefork do
   require 'capybara/rspec'
   require 'capybara/rails'
   require 'capybara/poltergeist'
- #require 'capybara-page-objects'
  #require 'capybara-page-objects/rspec/matchers'
 
   RSpec.configure do |config|
-
-    #config.before(:each) do
-    #  Capybara.current_driver = :poltergeist if example.metadata[:js]
-    #end
-    #
-    #config.after(:each) do
-    #  Capybara.use_default_driver if example.metadata[:js]
-    #end
-    #
-    #config.before(:each) do
-    #  Capybara.current_driver = :poltergeist
-    #  Capybara.app_host = "#{File.dirname(__FILE__)}/pages/"
-    #end
 
     config.include Capybara::DSL
    #config.include CapybaraPageObjects::RSpec::Matchers

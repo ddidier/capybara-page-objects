@@ -139,7 +139,7 @@ shared_examples 'a CapybaraPageObjects::Node' do
     context 'when using an invalid selector' do
 
       around do |example|
-        with_no_wait_time { example.call }
+        with_no_wait_time { example.run }
       end
 
       let(:node_subclass) {
