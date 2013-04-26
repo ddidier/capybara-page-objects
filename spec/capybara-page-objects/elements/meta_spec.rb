@@ -14,7 +14,7 @@ describe CapybaraPageObjects::Elements::Meta do
 
   # --------------------------------------------------------------------------------------------- Element examples -----
 
-  before { visit '/meta' }
+  before { visit '/elements/meta' }
 
   # --------------------
   describe 'self#with_http_equiv' do

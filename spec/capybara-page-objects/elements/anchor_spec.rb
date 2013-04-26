@@ -13,7 +13,7 @@ describe CapybaraPageObjects::Elements::Anchor do
 
   # --------------------------------------------------------------------------------------------- Element examples -----
 
-  before { visit '/anchor' }
+  before { visit '/elements/anchor' }
   let(:anchor) { CapybaraPageObjects::Elements::Anchor.new(find('#my_anchor')) }
 
   # --------------------
