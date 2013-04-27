@@ -4,6 +4,8 @@ require 'capybara-page-objects/shared_examples_for_page'
 
 describe CapybaraPageObjects::Page do
 
+  include CapybaraPageObjects::PageObjectSupport
+
   let(:page_class) { CapybaraPageObjects::Page }
 
   # --------------------
@@ -272,18 +274,5 @@ describe CapybaraPageObjects::Page do
     end # and all segment parameters are specified
 
   end # when the path has segments
-
-
-  # ----------------------------------------------------------------------------------------------- helper methods -----
-
-  def new_page_class(path)
-    Class.new(page_class) do
-      self.path(path)
-    end
-  end
-
-  def new_page(path, *args)
-    new_page_class(path).new(*args)
-  end
 
 end

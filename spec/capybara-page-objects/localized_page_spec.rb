@@ -4,6 +4,14 @@ require 'capybara-page-objects/shared_examples_for_page'
 
 describe CapybaraPageObjects::LocalizedPage do
 
+  include CapybaraPageObjects::PageObjectSupport
+
+  around(:each) do |example|
+    with_page_object_class(CapybaraPageObjects::LocalizedPage) do
+      example.run
+    end
+  end
+
   # ------------------------------------------------------------------------------------------------ Page examples -----
 
   let(:page_class) { CapybaraPageObjects::LocalizedPage }
@@ -319,28 +327,6 @@ describe CapybaraPageObjects::LocalizedPage do
       let(:expected_locale) { :fr }
       let(:locale_parameter) { Hash.new }
     end
-  end
-
-
-  # ----------------------------------------------------------------------------------------------- helper methods -----
-
-  def new_page_class(path)
-    Class.new(CapybaraPageObjects::LocalizedPage) do
-      self.path(path)
-    end
-  end
-
-  def new_page(path, *args)
-    new_page_class(path).new(*args)
-  end
-
-  def visit_new_page(path, *args)
-    new_page(path, *args).tap { |page| page.visit }
-  end
-
-  def nil_if_empty(hash)
-    return nil if hash.empty?
-    hash
   end
 
 end

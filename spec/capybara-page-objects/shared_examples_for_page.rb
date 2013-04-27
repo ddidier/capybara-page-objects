@@ -9,6 +9,14 @@ require 'capybara-page-objects/shared_examples_for_node'
 #
 shared_examples 'a CapybaraPageObjects::Page' do
 
+  include CapybaraPageObjects::PageObjectSupport
+
+  around(:each) do |example|
+    with_page_object_class(page_class) do
+      example.run
+    end
+  end
+
   # ------------------------------------------------------------------------------------------------ Node examples -----
 
   it_behaves_like 'a CapybaraPageObjects::Node' do
@@ -102,23 +110,6 @@ shared_examples 'a CapybaraPageObjects::Page' do
     it 'visits the specified path' do
       visit_new_page(page_path)
     end
-  end
-
-
-  # ----------------------------------------------------------------------------------------------- helper methods -----
-
-  def new_page_class(path)
-    Class.new(page_class) do
-      self.path(path)
-    end
-  end
-
-  def new_page(path, *args)
-    new_page_class(path).new(*args)
-  end
-
-  def visit_new_page(path, *args)
-    new_page(path, *args).tap { |page| page.visit }
   end
 
 end
