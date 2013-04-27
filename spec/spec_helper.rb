@@ -32,7 +32,7 @@ end
 # Some directories
 spec_dir = File.dirname(__FILE__)
 root_dir = "#{spec_dir}/.."
-app_dir  = "#{spec_dir}/dummy"
+app_dir = "#{spec_dir}/dummy"
 
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -43,8 +43,8 @@ app_dir  = "#{spec_dir}/dummy"
 
 Spork.prefork do
 
- #$LOAD_PATH.unshift("#{spec_dir}")
- #$LOAD_PATH.unshift("#{spec_dir}/lib")
+  #$LOAD_PATH.unshift("#{spec_dir}")
+  #$LOAD_PATH.unshift("#{spec_dir}/lib")
 
   configure_code_coverage
 
@@ -89,18 +89,14 @@ Spork.prefork do
 
   end
 
-  # -------------------- capybara
+  # -------------------- Capybara
 
   require 'capybara/rspec'
   require 'capybara/rails'
   require 'capybara/poltergeist'
- #require 'capybara-page-objects/rspec/matchers'
 
   RSpec.configure do |config|
-
     config.include Capybara::DSL
-   #config.include CapybaraPageObjects::RSpec::Matchers
-
   end
 
 end
@@ -120,10 +116,11 @@ Spork.each_run do
   reload_files("#{root_dir}/lib")
   reload_files("#{root_dir}/spec/support")
 
-  # -------------------- support
+  # -------------------- CapybaraPageObjects
 
   RSpec.configure do |config|
     config.include CapybaraPageObjects::CapybaraSupport
+    config.include CapybaraPageObjects::RSpec::Matchers, :type => :matcher
   end
 
 end

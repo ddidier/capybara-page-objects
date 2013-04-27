@@ -10,5 +10,12 @@ module CapybaraPageObjects
       Capybara.default_wait_time = default_wait_time
     end
 
+    # -------------------------------------------------------------------------------------------------- utilities -----
+
+    def nil_if_empty(object)
+      return nil if object.empty?
+      object
+    end
+
   end
 end
