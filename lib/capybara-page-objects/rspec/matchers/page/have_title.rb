@@ -35,8 +35,8 @@ module CapybaraPageObjects
           def failure_message_for_should
             <<-EOF.gsub(/^ {14}/, '')
               expected page '#{@actual_page.current_url}' to have its title set
-                expected: #{@expected_title}
-                actual:   #{@actual_page_title}
+                expected : #{@expected_title}
+                actual   : #{@actual_page_title}
             EOF
           end
 

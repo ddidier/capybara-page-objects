@@ -55,7 +55,7 @@ describe CapybaraPageObjects::LocalizedPage do
   # @param expected_path_parameters
   # @param expected_query_parameters
   # @param expected_path
-  shared_examples_for 'private examples for CapybaraPageObjects::Page' do
+  shared_examples_for 'private examples for CapybaraPageObjects::LocalizedPage' do
 
     describe '#path_ids' do
       it 'returns the path IDs' do
@@ -108,7 +108,7 @@ describe CapybaraPageObjects::LocalizedPage do
   # @param locale_parameter
   # @param expected_locale
   #
-  shared_examples_for 'private contexts for CapybaraPageObjects::Page' do
+  shared_examples_for 'private contexts for CapybaraPageObjects::LocalizedPage' do
 
     # -------------------------------------------------- without segment
     context 'when the path has no segment' do
@@ -130,7 +130,7 @@ describe CapybaraPageObjects::LocalizedPage do
           let(:query_parameters) { Hash.new }
           let(:page_parameters) { Hash[path_parameters: path_parameters.merge(locale_parameter), query_parameters: query_parameters] }
 
-          include_examples 'private examples for CapybaraPageObjects::Page'
+          include_examples 'private examples for CapybaraPageObjects::LocalizedPage'
         end
 
         # --------------------
@@ -139,7 +139,7 @@ describe CapybaraPageObjects::LocalizedPage do
           let(:query_parameters) { Hash.new }
           let(:page_parameters) { Hash[query_parameters: query_parameters].merge(locale_parameter) }
 
-          include_examples 'private examples for CapybaraPageObjects::Page'
+          include_examples 'private examples for CapybaraPageObjects::LocalizedPage'
         end
 
         # --------------------
@@ -148,7 +148,7 @@ describe CapybaraPageObjects::LocalizedPage do
           let(:query_parameters) { nil }
           let(:page_parameters) { Hash[path_parameters: path_parameters.merge(locale_parameter)] }
 
-          include_examples 'private examples for CapybaraPageObjects::Page'
+          include_examples 'private examples for CapybaraPageObjects::LocalizedPage'
         end
 
         # --------------------
@@ -157,7 +157,7 @@ describe CapybaraPageObjects::LocalizedPage do
           let(:query_parameters) { nil }
           let(:page_parameters) { nil_if_empty(locale_parameter) }
 
-          include_examples 'private examples for CapybaraPageObjects::Page'
+          include_examples 'private examples for CapybaraPageObjects::LocalizedPage'
         end
 
       end # and no parameter is specified
@@ -175,7 +175,7 @@ describe CapybaraPageObjects::LocalizedPage do
           let(:query_parameters) { Hash[q1: 1, q2: 'v2'] }
           let(:page_parameters) { Hash[path_parameters: path_parameters.merge(locale_parameter), query_parameters: query_parameters] }
 
-          include_examples 'private examples for CapybaraPageObjects::Page'
+          include_examples 'private examples for CapybaraPageObjects::LocalizedPage'
         end
 
         # --------------------
@@ -184,7 +184,7 @@ describe CapybaraPageObjects::LocalizedPage do
           let(:query_parameters) { Hash[q1: 1, q2: 'v2'] }
           let(:page_parameters) { Hash[query_parameters: query_parameters].merge(locale_parameter) }
 
-          include_examples 'private examples for CapybaraPageObjects::Page'
+          include_examples 'private examples for CapybaraPageObjects::LocalizedPage'
         end
 
         # --------------------
@@ -193,7 +193,7 @@ describe CapybaraPageObjects::LocalizedPage do
           let(:query_parameters) { Hash[q1: 1, q2: 'v2'] }
           let(:page_parameters) { Hash[path_parameters: nil_if_empty(locale_parameter)].merge(query_parameters) }
 
-          include_examples 'private examples for CapybaraPageObjects::Page'
+          include_examples 'private examples for CapybaraPageObjects::LocalizedPage'
         end
 
         # --------------------
@@ -202,7 +202,7 @@ describe CapybaraPageObjects::LocalizedPage do
           let(:query_parameters) { Hash[q1: 1, q2: 'v2'] }
           let(:page_parameters) { query_parameters.merge(locale_parameter) }
 
-          include_examples 'private examples for CapybaraPageObjects::Page'
+          include_examples 'private examples for CapybaraPageObjects::LocalizedPage'
         end
 
       end # and query parameters are specified
@@ -248,22 +248,22 @@ describe CapybaraPageObjects::LocalizedPage do
 
           context 'with explicit path parameters and explicit query parameters' do
             let(:page_parameters) { Hash[path_parameters: path_parameters, query_parameters: query_parameters] }
-            include_examples 'private examples for CapybaraPageObjects::Page'
+            include_examples 'private examples for CapybaraPageObjects::LocalizedPage'
           end
 
           context 'with implicit path parameters and explicit query parameters' do
             let(:page_parameters) { Hash[query_parameters: query_parameters].merge(path_parameters) }
-            include_examples 'private examples for CapybaraPageObjects::Page'
+            include_examples 'private examples for CapybaraPageObjects::LocalizedPage'
           end
 
           context 'with explicit path parameters and implicit query parameters' do
             let(:page_parameters) { Hash[path_parameters: path_parameters].merge(query_parameters) }
-            include_examples 'private examples for CapybaraPageObjects::Page'
+            include_examples 'private examples for CapybaraPageObjects::LocalizedPage'
           end
 
           context 'with implicit path parameters and implicit query parameters' do
             let(:page_parameters) { path_parameters.merge(query_parameters) }
-            include_examples 'private examples for CapybaraPageObjects::Page'
+            include_examples 'private examples for CapybaraPageObjects::LocalizedPage'
           end
 
         end
@@ -275,22 +275,22 @@ describe CapybaraPageObjects::LocalizedPage do
 
           context 'with explicit path parameters and explicit query parameters' do
             let(:page_parameters) { Hash[path_parameters: path_parameters, query_parameters: query_parameters] }
-            include_examples 'private examples for CapybaraPageObjects::Page'
+            include_examples 'private examples for CapybaraPageObjects::LocalizedPage'
           end
 
           context 'with implicit path parameters and explicit query parameters' do
             let(:page_parameters) { Hash[query_parameters: query_parameters].merge(path_parameters) }
-            include_examples 'private examples for CapybaraPageObjects::Page'
+            include_examples 'private examples for CapybaraPageObjects::LocalizedPage'
           end
 
           context 'with explicit path parameters and implicit query parameters' do
             let(:page_parameters) { Hash[path_parameters: path_parameters].merge(query_parameters) }
-            include_examples 'private examples for CapybaraPageObjects::Page'
+            include_examples 'private examples for CapybaraPageObjects::LocalizedPage'
           end
 
           context 'with implicit path parameters and implicit query parameters' do
             let(:page_parameters) { path_parameters.merge(query_parameters) }
-            include_examples 'private examples for CapybaraPageObjects::Page'
+            include_examples 'private examples for CapybaraPageObjects::LocalizedPage'
           end
 
         end
@@ -299,7 +299,7 @@ describe CapybaraPageObjects::LocalizedPage do
 
     end # when the path has segments
 
-  end # private contexts for CapybaraPageObjects::Page
+  end # private contexts for CapybaraPageObjects::LocalizedPage
 
 
   # --------------------------------------------------------------------------------------------------------------------
@@ -307,14 +307,14 @@ describe CapybaraPageObjects::LocalizedPage do
   before { CapybaraPageObjects::Configuration.reset }
 
   context 'when the default locale is not overriden by the instance' do
-    include_examples 'private contexts for CapybaraPageObjects::Page' do
+    include_examples 'private contexts for CapybaraPageObjects::LocalizedPage' do
       let(:expected_locale) { :en }
       let(:locale_parameter) { Hash.new }
     end
   end
 
   context 'when the default locale is overriden by the instance' do
-    include_examples 'private contexts for CapybaraPageObjects::Page' do
+    include_examples 'private contexts for CapybaraPageObjects::LocalizedPage' do
       let(:expected_locale) { :fr }
       let(:locale_parameter) { Hash[locale: :fr] }
     end
@@ -323,7 +323,7 @@ describe CapybaraPageObjects::LocalizedPage do
   context 'when the default locale is overriden by the configuration' do
     before { CapybaraPageObjects::Configuration.default_locale = :fr }
 
-    include_examples 'private contexts for CapybaraPageObjects::Page' do
+    include_examples 'private contexts for CapybaraPageObjects::LocalizedPage' do
       let(:expected_locale) { :fr }
       let(:locale_parameter) { Hash.new }
     end

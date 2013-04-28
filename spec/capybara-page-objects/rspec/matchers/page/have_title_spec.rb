@@ -32,8 +32,8 @@ describe CapybaraPageObjects::RSpec::Matchers::Page::HaveTitle, :type => 'matche
     matcher.matches?(@page)
     matcher.failure_message_for_should.should == <<-EOF.gsub(/^ {6}/, '')
       expected page 'actual_url' to have its title set
-        expected: another_title
-        actual:   actual_title
+        expected : another_title
+        actual   : actual_title
     EOF
   end
 
