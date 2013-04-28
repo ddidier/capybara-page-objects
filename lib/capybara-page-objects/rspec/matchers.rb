@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 require 'capybara-page-objects/rspec/matchers/page/be_displayed'
 require 'capybara-page-objects/rspec/matchers/page/be_displayed_at_url'
+require 'capybara-page-objects/rspec/matchers/page/be_displayed_in'
 require 'capybara-page-objects/rspec/matchers/page/have_title'
 
 

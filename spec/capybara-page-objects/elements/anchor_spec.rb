@@ -4,7 +4,7 @@ require 'capybara-page-objects/shared_examples_for_component'
 
 describe CapybaraPageObjects::Elements::Anchor do
 
-  # ------------------------------------------------------------------------------------------------ Node examples -----
+  # ------------------------------------------------------------------------------------------- Component examples -----
 
   it_behaves_like 'a CapybaraPageObjects::Component' do
     let(:component_class) { CapybaraPageObjects::Elements::Anchor }
