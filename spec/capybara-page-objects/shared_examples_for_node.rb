@@ -199,6 +199,51 @@ shared_examples 'a CapybaraPageObjects::Node' do
 
   end
 
+  # --------------------------------------------------------------------------------------------------------------------
+  describe '#method_missing' do
+
+    let(:new_value) { 'my new value' }
+
+    # --------------------
+    context 'when a component with the specified name exists' do
+
+      context 'and has a #value= method' do
+        it 'sets the input value' do
+          input_component = mock
+          input_component.should_receive(:value=).with(new_value)
+
+          node_subclass = new_node_subclass(node_class)
+          node_subclass.component(:input_component) { input_component }
+          #noinspection RubyArgCount
+          node_subclass.new.input_component = new_value
+        end
+      end
+
+      context 'and has no #value= method' do
+        it 'passes the call to the parent #method_missing' do
+          input_component = mock
+          input_component.should_receive(:value=).and_raise(NoMethodError)
+
+          node_subclass = new_node_subclass(node_class)
+          node_subclass.component(:input_component) { input_component }
+          #noinspection RubyArgCount
+          expect { node_subclass.new.input_component = new_value }.to raise_error(NoMethodError, /input_component=/)
+        end
+      end
+
+    end
+
+    # --------------------
+    context 'when a component with the specified name does not exist' do
+      it 'passes the call to the parent #method_missing' do
+        node_subclass = new_node_subclass(node_class)
+        #noinspection RubyArgCount
+        expect { node_subclass.new.input_component = new_value }.to raise_error(NoMethodError, /input_component=/)
+      end
+    end
+
+  end
+
 
   # ----------------------------------------------------------------------------------------------- helper methods -----
 

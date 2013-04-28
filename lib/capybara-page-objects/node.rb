@@ -46,6 +46,27 @@ module CapybaraPageObjects
     # -------------------- private
     private
 
+    # Allows to set a value directly on a component, if this component has a :value= method.
+    #
+    # Example:
+    #   class MyNode < CapybaraPageObjects::Node
+    #     component :email, InputText, '#email_field'
+    #   end
+    # Then you can use:
+    #   MyNode.new.email = 'admin@example.com'
+    # Instead of:
+    #   MyNode.new.email.value = 'admin@example.com'
+    #
+    def method_missing(method_symbol, *arguments, &block)
+      if method_symbol.to_s =~ /^(.+)=$/
+        send($1).send(:value=, *arguments)
+      else
+        super
+      end
+    rescue NoMethodError
+      super
+    end
+
     # ---------------------------------------------------------------------------------------------- class methods -----
 
     # -------------------- public
