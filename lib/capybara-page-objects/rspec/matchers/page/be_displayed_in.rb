@@ -82,7 +82,7 @@ module RSpec
     end
 
     def method_missing_with_be_displayed_in(method_symbol, *arguments, &block)
-      if method_symbol.to_s =~ /^be_displayed_in_(.*)$/
+      if method_symbol.to_s =~ /^be_displayed_in_(.+)$/
         locale = CapybaraPageObjects::RSpec::Matchers::Page::BeDisplayedIn::LANGUAGE_MAP[$1.to_s]
         return CapybaraPageObjects::RSpec::Matchers::Page::BeDisplayedIn.new(locale) if locale
       end

@@ -50,7 +50,7 @@ describe CapybaraPageObjects::RSpec::Matchers::Page::BeDisplayedIn, :type => 'ma
     end
 
     context 'when the mapping does not exist' do
-      it 'passes the call to the parent method_missing' do
+      it 'passes the call to the parent #method_missing' do
         new_page('/page').should_not be_nil
       end
     end
