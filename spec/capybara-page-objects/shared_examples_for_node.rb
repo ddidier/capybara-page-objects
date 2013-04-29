@@ -27,14 +27,15 @@ shared_examples 'a CapybaraPageObjects::Node' do
 
   # --------------------------------------------------------------------------------------------------------------------
   # @param node_component the component instance as retrieved by the created method
-  shared_examples_for 'private examples for CapybaraPageObjects::Node#component' do
+  # @param node_component_id (optional, default to 'my_node')
+  shared_examples_for 'private examples for CapybaraPageObjects::Node#component' do |node_component_id|
 
     it 'creates a component of the specified type' do
       node_component.should be_kind_of (node_component_class)
     end
 
     it 'creates a component wrapping the specified tag' do
-      node_component.source[:id].should eq('my_node')
+      node_component.source[:id].should eq(node_component_id || 'my_node')
     end
 
   end
@@ -94,6 +95,18 @@ shared_examples 'a CapybaraPageObjects::Node' do
       }
 
       include_examples 'private examples for CapybaraPageObjects::Node#component'
+    end
+
+    # --------------------
+    context 'when using a category selector' do
+
+      let(:node_subclass) {
+        Class.new(node_class) do
+          component :node_component, NodeImpl, 'my_input_name', :field
+        end
+      }
+
+      include_examples 'private examples for CapybaraPageObjects::Node#component', 'my_input'
     end
 
     # --------------------

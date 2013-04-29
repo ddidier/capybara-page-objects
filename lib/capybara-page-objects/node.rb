@@ -36,7 +36,8 @@ module CapybaraPageObjects
     end
 
     # Returns a node of the given class and located with the given query,
-    # or CapybaraPageObjects::None if none was found.
+    # or CapybaraPageObjects::None if none was found. The search is scoped
+    # to the current node.
     def find_or_none(node_class, *query)
       node_class.new(find(*query))
     rescue Capybara::ElementNotFound
@@ -80,21 +81,29 @@ module CapybaraPageObjects
 
     # Adds a factory method returning a node of the given class and located
     # with the given query, or CapybaraPageObjects::None if none was found.
+    # The search is scoped to the current node.
     #
     # Several variants:
-    #   component(:component_name) { CapybaraPageObjects::Node.new(find('a')) }
-    #   component :component_name, CapybaraPageObjects::Node, 'a'
-    #   component :component_name, CapybaraPageObjects::Node, 'a', :css
-    #   component :component_name, CapybaraPageObjects::Node, 'a', :xpath
+    #   component(:component_name) { component }
+    #   component :component_name, ComponentClass, 'selector'
+    #   component :component_name, ComponentClass, 'selector', :selector_type
+    #
+    # Examples:
+    #   class MyNode
+    #     component(:link_1) { CapybaraPageObjects::Node.new(find('#link_1')) }
+    #     component :link_2,   CapybaraPageObjects::Node, '#link_2'     # default to :css
+    #     component :link_3,   CapybaraPageObjects::Node, '//a[1]',     :xpath
+    #     component :input_1,  CapybaraPageObjects::Node, 'input_name', :field
+    #   end
     def self.component(name, *args, &block)
       if block
         raise ArgumentError.new(component_usage) unless args.empty?
         define_method(name, &block)
       else
         raise ArgumentError.new(component_usage) unless args.length.between?(2, 3)
-        klass, selector, type = args
+        klass, selector, selector_type = args
         define_method(name) do
-          find_or_none(klass, type || Capybara.default_selector, selector)
+          find_or_none(klass, selector_type || Capybara.default_selector, selector)
         end
       end
     end
@@ -115,11 +124,10 @@ module CapybaraPageObjects
     #   register_component ComponentClass
     #   register_component ComponentClass, :component_name
     #
-    # Usage:
+    # Examples:
     #   class MyNode
-    #     component_name, 'a'
-    #     component_name, 'a', :css
-    #     component_name, 'a', :xpath
+    #     link_1 '#link_1'
+    #     link_2 '//a[1]', :xpath
     #   end
     def self.register_component(component_class, component_class_name = nil)
       component_class_name ||= component_class.name.underscore
