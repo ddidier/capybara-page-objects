@@ -9,8 +9,6 @@ require 'capybara-page-objects/shared_examples_for_node'
 #
 shared_examples 'a CapybaraPageObjects::Page' do
 
-  include CapybaraPageObjects::PageObjectSupport
-
   around(:each) do |example|
     with_page_object_class(page_class) do
       example.run

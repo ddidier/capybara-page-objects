@@ -40,4 +40,16 @@ shared_examples 'a CapybaraPageObjects::Elements::Input' do
     end
   end
 
+  # --------------------
+  describe 'component registration' do
+    it 'creates a #input method inside a CapybaraPageObjects::Page' do
+      page_class = new_page_class('/elements/input')
+      page_class.input :my_input, '#my_input'
+      my_input = page_class.new.my_input
+      my_input.should be_kind_of CapybaraPageObjects::Elements::Input
+      my_input.id.should eq('my_input')
+      my_input.name.should eq('my_input_name')
+    end
+  end
+
 end

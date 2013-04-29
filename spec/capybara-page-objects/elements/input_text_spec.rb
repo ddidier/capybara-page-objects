@@ -36,4 +36,15 @@ describe CapybaraPageObjects::Elements::InputText do
     end
   end
 
+  # --------------------
+  describe 'component registration' do
+    it 'creates a #input_text method inside a CapybaraPageObjects::Page' do
+      page_class = new_page_class('/elements/input_text')
+      page_class.input_text :my_input_text, '#my_input_text'
+      my_input_text = page_class.new.my_input_text
+      my_input_text.should be_kind_of CapybaraPageObjects::Elements::InputText
+      my_input_text.id.should eq('my_input_text')
+    end
+  end
+
 end

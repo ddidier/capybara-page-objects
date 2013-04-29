@@ -4,8 +4,6 @@ require 'capybara-page-objects/shared_examples_for_page'
 
 describe CapybaraPageObjects::Page do
 
-  include CapybaraPageObjects::PageObjectSupport
-
   let(:page_class) { CapybaraPageObjects::Page }
 
   # --------------------

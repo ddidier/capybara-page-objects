@@ -3,8 +3,6 @@ require 'spec_helper'
 
 describe CapybaraPageObjects::RSpec::Matchers::Page::BeDisplayedAtUrl, :type => 'matcher' do
 
-  include CapybaraPageObjects::PageObjectSupport
-
   before(:each) do
     Capybara.current_session.should_receive(:current_url).and_return('http://www.example.com/actual/url')
   end

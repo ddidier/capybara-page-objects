@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 require 'capybara-page-objects/component'
+require 'capybara-page-objects/page'
 
 module CapybaraPageObjects
   module Elements
@@ -12,6 +13,10 @@ module CapybaraPageObjects
       field(:value) { source[:value] }
 
     end
+
+
+    # Registering component as 'input'
+    CapybaraPageObjects::Page.register_component(Input, :input)
 
   end
 end

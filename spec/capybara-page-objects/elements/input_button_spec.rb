@@ -28,4 +28,15 @@ describe CapybaraPageObjects::Elements::InputButton do
     end
   end
 
+  # --------------------
+  describe 'component registration' do
+    it 'creates a #input_button method inside a CapybaraPageObjects::Page' do
+      page_class = new_page_class('/elements/input_button')
+      page_class.input_button :my_input_button, '#my_input_button'
+      my_input_button = page_class.new.my_input_button
+      my_input_button.should be_kind_of CapybaraPageObjects::Elements::InputButton
+      my_input_button.id.should eq('my_input_button')
+    end
+  end
+
 end

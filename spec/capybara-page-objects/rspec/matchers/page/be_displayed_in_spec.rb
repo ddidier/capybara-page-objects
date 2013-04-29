@@ -3,8 +3,6 @@ require 'spec_helper'
 
 describe CapybaraPageObjects::RSpec::Matchers::Page::BeDisplayedIn, :type => 'matcher' do
 
-  include CapybaraPageObjects::PageObjectSupport
-
   before { stub_page_in(:fr) }
   let(:page) { mock }
 

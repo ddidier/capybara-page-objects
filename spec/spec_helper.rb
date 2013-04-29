@@ -120,6 +120,7 @@ Spork.each_run do
 
   RSpec.configure do |config|
     config.include CapybaraPageObjects::CapybaraSupport
+    config.include CapybaraPageObjects::PageObjectSupport
     config.include CapybaraPageObjects::RSpec::Matchers, :type => :matcher
   end
 

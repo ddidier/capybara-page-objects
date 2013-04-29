@@ -124,7 +124,7 @@ module CapybaraPageObjects
     def self.register_component(component_class, component_class_name = nil)
       component_class_name ||= component_class.name.underscore
 
-      define_singleton_method(component_class_name) do |name, selector, type|
+      define_singleton_method(component_class_name) do |name, selector, type = Capybara.default_selector|
         component(name, component_class, selector, type)
       end
     end

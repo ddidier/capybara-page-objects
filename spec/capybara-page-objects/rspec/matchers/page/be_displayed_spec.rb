@@ -3,8 +3,6 @@ require 'spec_helper'
 
 describe CapybaraPageObjects::RSpec::Matchers::Page::BeDisplayed, :type => 'matcher' do
 
-  include CapybaraPageObjects::PageObjectSupport
-
   before { Capybara.current_session.should_receive(:current_path).and_return('/actual/path') }
 
   # --------------------

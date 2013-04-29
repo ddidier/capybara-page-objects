@@ -26,5 +26,9 @@ module CapybaraPageObjects
 
     end
 
+
+    # Registering component as 'input_text'
+    CapybaraPageObjects::Page.register_component(InputText, :input_text)
+
   end
 end

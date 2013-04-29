@@ -38,5 +38,16 @@ describe CapybaraPageObjects::Elements::Anchor do
     end
   end
 
+  # --------------------
+  describe 'component registration' do
+    it 'creates a #anchor method inside a CapybaraPageObjects::Page' do
+      page_class = new_page_class('/elements/anchor')
+      page_class.anchor :my_anchor, '#my_anchor'
+      my_anchor = page_class.new.my_anchor
+      my_anchor.should be_kind_of CapybaraPageObjects::Elements::Anchor
+      my_anchor.id.should eq('my_anchor')
+      my_anchor.text.should eq('My anchor')
+    end
+  end
 
 end

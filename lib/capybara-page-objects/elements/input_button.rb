@@ -14,5 +14,9 @@ module CapybaraPageObjects
 
     end
 
+
+    # Registering component as 'input_button'
+    CapybaraPageObjects::Page.register_component(InputButton, :input_button)
+
   end
 end

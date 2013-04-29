@@ -4,8 +4,6 @@ require 'capybara-page-objects/shared_examples_for_page'
 
 describe CapybaraPageObjects::LocalizedPage do
 
-  include CapybaraPageObjects::PageObjectSupport
-
   around(:each) do |example|
     with_page_object_class(CapybaraPageObjects::LocalizedPage) do
       example.run
