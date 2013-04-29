@@ -169,8 +169,12 @@ shared_examples 'a CapybaraPageObjects::Node' do
     context 'when not specifying a name' do
       before { node_subclass.register_component component_class }
 
-      it 'creates a class method named with the underscored name of the class' do
+      it 'creates a class method named with the underscored name of the class in the subclass of the node' do
         node_subclass.methods.should include(:my_component)
+      end
+
+      it 'does not create a class method with the underscored name of the class in the parent subclass of the node' do
+        node_class.methods.should_not include(:my_component)
       end
 
       include_examples 'private examples for CapybaraPageObjects::Node#component' do
@@ -185,8 +189,12 @@ shared_examples 'a CapybaraPageObjects::Node' do
     context 'when specifying a name' do
       before { node_subclass.register_component component_class, :my_other_component }
 
-      it 'creates a class method with the specified name' do
+      it 'creates a class method with the specified name in the subclass of the node' do
         node_subclass.methods.should include(:my_other_component)
+      end
+
+      it 'does not create a class method with the specified name in the parent subclass of the node' do
+        node_class.methods.should_not include(:my_other_component)
       end
 
       include_examples 'private examples for CapybaraPageObjects::Node#component' do

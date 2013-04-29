@@ -112,14 +112,14 @@ module CapybaraPageObjects
     # Creates a specialized factory method.
     #
     # Several variants:
-    #   register_component component_class, :component_name
-    #   register_component component_class
+    #   register_component ComponentClass
+    #   register_component ComponentClass, :component_name
     #
     # Usage:
     #   class MyNode
-    #     component_type_1, :component_name, 'a'
-    #     component_type_2, :component_name, 'a', :css
-    #     component_type_3, :component_name, 'a', :xpath
+    #     component_name, 'a'
+    #     component_name, 'a', :css
+    #     component_name, 'a', :xpath
     #   end
     def self.register_component(component_class, component_class_name = nil)
       component_class_name ||= component_class.name.underscore
